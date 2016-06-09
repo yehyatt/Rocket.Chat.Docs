@@ -18,6 +18,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org curl graphicsmagick
 ```
 
+
 We have to also install `npm`, which is the Node.js package manager. You can do this by typing:
 
 ```bash
@@ -64,6 +65,8 @@ Append `replSet=001-rs` into `mongod.conf` file:
 $ echo replSet=001-rs >> /etc/mongod.conf
 ```
 
+
+
 And restart Mongo:
 
 ```bash
@@ -79,13 +82,18 @@ replication:
       replSetName:  "001-rs"
 ```
 
-Restart Mongo:
-
+Create /data/db directory required by mongodb
 ```bash
-service mongod restart
+$ sudo mkdir -p ~/data/db
 ```
 
-Start the MongoDB shell and initiate the replica set:
+Start mongod with custom database location and replication set
+
+```bash
+$ mongod --dbpath ~/data/db --replSet 001-rs
+```
+
+In a new terminal, start the MongoDB shell and initiate the replica set:
 
 ```bash
 mongo
